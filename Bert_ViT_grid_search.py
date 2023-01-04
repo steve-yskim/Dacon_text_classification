@@ -14,7 +14,7 @@ import gc
 import pandas as pd
 import numpy as np
 import os
-from KorEDA.eda import *
+from eda import *
 from transformers import AdamW
 from sklearn.metrics import f1_score
 
