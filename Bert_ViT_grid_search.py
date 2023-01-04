@@ -123,40 +123,6 @@ def infer(model, test_loader, device, mode) :
                 act_vec_whole_3 = torch.cat((act_vec_whole_3, act_vec_3.cpu()))
                 
     return [type_preds, polarity_preds, tense_preds, certainty_preds], [act_vec_whole_0.numpy(), act_vec_whole_1.numpy(), act_vec_whole_2.numpy(), act_vec_whole_3.numpy()]
-#
-# def train_one_epoch(self, train_loader, train_mode) :
-#     if train_mode == True :
-#         self.model.train()
-#     else :
-#         self.model.eval()
-#     correct = 0
-#     batches = 0
-#     total = 0
-#     type_preds, polarity_preds, tense_preds, certainty_preds = [], [], [], []
-#     for batch in tqdm(train_loader):
-#         self.optimizer.zero_grad()
-#         if self.mode == 'text' or self.mode == 'both' :
-#             input_ids_batch = batch["input_ids"].to(self.device)
-#             attention_masks_batch = batch["attention_mask"].to(self.device)
-#         if self.mode == 'img' or self.mode == 'both' :
-#             pixel_values = batch['pixel_values'].to(self.device)
-#         y_batch_0 = batch["y0"].to(self.device, dtype=torch.int64)
-#         y_batch_1 = batch["y1"].to(self.device, dtype=torch.int64)
-#         y_batch_2 = batch["y2"].to(self.device, dtype=torch.int64)
-#         y_batch_3 = batch["y3"].to(self.device, dtype=torch.int64)
-#
-#         if self.mode == 'text' :
-#             y_pred_0, y_pred_1, y_pred_2, y_pred_3 = self.model(input_ids_batch, attention_masks_batch)
-#
-#         type_preds += y_pred_0.argmax(1).detach().cpu().numpy().tolist()
-#         polarity_preds += y_pred_1.argmax(1).detach().cpu().numpy().tolist()
-#         tense_preds += y_pred_2.argmax(1).detach().cpu().numpy().tolist()
-#         certainty_preds += y_pred_3.argmax(1).detach().cpu().numpy().tolist()
-#
-#     print("End_Loss:", total_loss, "type_f1:", type_f1, "polarity_f1:", polarity_f1,
-#           "tense_f1:", tense_f1, "certainty_f1:", certainty_f1 )
-#     #accuracy = correct.float() / len(train_loader.dataset)
-#     return [type_f1,  polarity_f1, tense_f1,  certainty_f1, weighted_f1]
 
 def train_test_split_k(df, k) :
     df_train = df[df['kfold']!=k]
