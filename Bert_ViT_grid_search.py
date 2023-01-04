@@ -182,7 +182,7 @@ def load_dataset(path, k, random_state, reset_k = True) :
             df_idx, valid_idx = list(folds.split(df.values, df['유형']))[i]
             valid = df.iloc[valid_idx]
             df.loc[df[df.ID.isin(valid.ID) == True].index.to_list(), 'kfold'] = i
-        df.to_csv('Data/train_k.csv')
+        df.to_csv('train_k.csv')
     else :
         pass
     return df, [encoder_0, encoder_1, encoder_2, encoder_3]
